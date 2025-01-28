@@ -1,4 +1,5 @@
-import { db } from "@vercel/postgres";
+import { db } from '@vercel/postgres';
+//import { db } from '@/db';
 
 const client = await db.connect();
 

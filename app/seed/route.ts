@@ -1,6 +1,9 @@
 import bcrypt from 'bcrypt';
-import { db } from '@vercel/postgres';
-import { invoices, customers, revenue, users } from '../lib/placeholder-data';
+//import { db } from '@vercel/postgres';
+import { db } from '@/db';
+import { invoices, customers, revenue, users } from '@/app/lib/placeholder-data';
+
+export const dynamic = 'force-dynamic';
 
 const client = await db.connect();
 
@@ -113,6 +116,7 @@ export async function GET() {
     return Response.json({ message: 'Database seeded successfully' });
   } catch (error) {
     await client.sql`ROLLBACK`;
+    console.log(error)
     return Response.json({ error }, { status: 500 });
   }
 }
